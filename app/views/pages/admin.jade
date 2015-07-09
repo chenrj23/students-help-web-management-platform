@@ -1,0 +1,70 @@
+extends ../layout
+
+block content
+  .jumbotron
+    .container
+      h3 &nbsp;
+      h1 Hello, #{user.name}!
+      p
+        |请查看提交内容，并发送给部门～
+      p
+        a.btn.btn-primary.btn-lg(href="#", role="button")
+          |Learn more
+  .container
+    .row
+      table.table.table-hover.table-bordered
+        thead
+          tr
+            th 姓名
+            th 查看
+            th 发送
+            th 部门
+            th 删除
+          tbody
+            each item in suggests
+              tr(class="item-id-#{item._id}")
+                td #{item.from.name}
+                td
+                  button.btn.btn-danger(type="button", data-id="#{item._id}" data-toggle="modal", data-target="##{item._id}") 查看
+                td
+                  .btn-group 
+                    button.btn.btn-success 发送
+                    button.btn.btn-success.dropdown-toggle(type="button", data-toggle="dropdown" aria-expanded="false") 
+                      span.caret
+                      span.sr-only Toggle Dropdown
+                    ul.dropdown-menu(role="menu")
+                      each cat in departments
+                        li(div = '#{cat.name}')
+                          a.update(herf="#", data-catid='#{cat._id}', data-itemid='#{item._id}') #{cat.name}
+                td(class="item-id-#{item._id}")
+                  if item.to
+                    p #{item.to.name} 
+                  else 
+                    p 尚未发送
+                td
+                  button.btn.btn-danger.del(type="button", data-id="#{item._id}") 删除
+      // FOOTER
+      footer
+        p.pull-right
+          a(href='#') Back to top
+        p
+          | &copy; 2014 Company, Inc. &middot; 
+          a(href='#') Privacy
+          |  &middot; 
+          a(href='#') Terms
+
+
+
+  each item in suggests     
+    div(id = "#{item._id}", class = 'modal fade' )
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            h4.modal-title
+              |详情页
+          .modal-body
+            p
+              |#{item.content}
+          .modal-footer
+            button.btn.btn-default(type="button", data-dismiss="modal") 关闭
+  script(src='/js/admin.js')

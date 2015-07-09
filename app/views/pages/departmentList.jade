@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  .jumbotron
+    .container
+      h3 &nbsp;
+      h1 Hello, world!
+      p
+        |if you is first use the system, pelease see the detail
+      p
+        a.btn.btn-primary.btn-lg(href="#", role="button")
+          |Learn more
+  .container
+    .row
+      table.table.table-hover.table-bordered
+        thead
+          tr
+            th 名字
+            th 更新
+            th 删除
+          tbody
+            each item in departments
+              tr(class="item-id-#{item._id}")
+                td #{item.name}
+                td: a(target="_blank", href="../admin/update/#{item._id}") 修改
+                td
+                  button.btn.btn-danger.del(type="button", data-id="#{item._id}") 删除
+  script(src='/js/departments.js') 

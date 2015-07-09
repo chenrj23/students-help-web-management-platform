@@ -1,0 +1,54 @@
+.navbar-wrapper
+  .container
+    nav.navbar.navbar-inverse.navbar-static-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') EAP管理系统
+        #navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/') 主页
+            li
+              if user
+                a(href='/student?stuId=#{user._id}') 个人
+              else
+                a(href='#') 个人（请先登录）
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+                | 部门 
+                span.caret
+              ul.dropdown-menu(role='menu')
+                if departments && user
+                  each item in departments
+                    li
+                      a(href='/department?_id=#{item._id}') #{item.name}
+                  li.divider
+                  li.dropdown-header Nav header
+                  li
+                    a(href='#') Separated link
+                  li
+                    a(href='#') One more separated link
+                else
+                  li
+                    a(href='#') 部门（请先登录）
+          if user
+            p.navbar-text.navbar-right
+              span 欢迎#{user.name}
+              span &nbsp;|&nbsp;
+              a.navbar-link(href="/logout") 登出&nbsp;&nbsp;
+          else
+            p.navbar-text.navbar-right
+              a.navbar-link(href="#", data-toggle="modal", data-target="#signupModal") 注册
+              span &nbsp;|&nbsp;
+              a.navbar-link(href="#", data-toggle="modal", data-target="#signinModal") 登陆&nbsp;&nbsp;
+
+
+
+
+
+

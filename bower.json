@@ -1,0 +1,23 @@
+{
+  "name": "imooc movies",
+  "version": "0.0.1",
+  "description": "imooc movies web station",
+  "keywords": [
+    "123456"
+  ],
+  "authors": [
+    "chenrj"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4"
+  }
+}
